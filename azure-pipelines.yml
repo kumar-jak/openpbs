@@ -15,41 +15,32 @@
 #    .travis/do.sh
 #  displayName: 'make'
 
-resources:
-  containers:
-  - container: c7
-    image: centos:7
 
-  - container: c8
-    image: centos:8
-
-  - container: u18
-    image: ubuntu:18.04
 
 jobs:
-- job: ce7
-  pool:
-    vmImage: 'ubuntu-18.04'
-  containerResource: c7  
-  steps:
-  - script: yum install -y sudo
-  - script:  sudo .travis/do.sh
-  - script: cat /etc/*release*
+  - job: ce7
+    pool:
+      vmImage: 'ubuntu-18.04'
+    container: centos:7
+    steps:
+    - script: yum install -y sudo
+    - script:  sudo .travis/do.sh
+    - script: cat /etc/*release*
 
-- job: ce8
-  pool:
-    vmImage: 'ubuntu-18.04'
-  containerResource: c8  
-  steps:
-  - script: dnf install -y sudo
-  - script:  sudo .travis/do.sh
-  - script: cat /etc/*release*
+  - job: ce8
+    pool:
+      vmImage: 'ubuntu-18.04'
+    container: centos:8
+    steps:
+    - script: dnf install -y sudo
+    - script:  sudo .travis/do.sh
+    - script: cat /etc/*release*
 
-- job: ub18
-  pool:
-    vmImage: 'ubuntu-18.04'
-  containerResource: u18  
-  steps:
-  - script: apt install -y sudo
-  - script:  sudo .travis/do.sh
-  - script: cat /etc/*release*
+  - job: ub18
+    pool:
+      vmImage: 'ubuntu-18.04'
+    container: ubuntu:18.04
+    steps:
+    - script: apt install -y sudo
+    - script:  sudo .travis/do.sh
+    - script: cat /etc/*release*
