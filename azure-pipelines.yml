@@ -20,33 +20,8 @@
 jobs:
   - job: ce7
     pool:
-      vmImage: 'ubuntu-18.04'
-    container: 
-      image: centos:7
-      options: --user-ns host 
+      vmImage: 'centos-7'
     steps:
     - script: yum install -y sudo
-    - script:  sudo .travis/do.sh
-    - script: cat /etc/*release*
-
-  - job: ce8
-    pool:
-      vmImage: 'ubuntu-18.04'
-    container: 
-      image: centos:8
-      options: --user-ns host
-    steps:
-    - script: dnf install -y sudo
-    - script:  sudo .travis/do.sh
-    - script: cat /etc/*release*
-
-  - job: ub18
-    pool:
-      vmImage: 'ubuntu-18.04'
-    container: 
-      image: ubuntu:18.04
-      options: --user-ns host
-    steps:
-    - script: apt install -y sudo
     - script:  sudo .travis/do.sh
     - script: cat /etc/*release*
