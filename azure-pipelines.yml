@@ -16,12 +16,13 @@
 #  displayName: 'make'
 
 
-
 jobs:
   - job: ce7
     pool:
-      vmImage: 'centos-7'
+      vmImage: 'ubuntu-18.04'
+    container: 
+      image: centos:7
+      options: --user vsts_azpcontainer --privileged
     steps:
-    - script: yum install -y sudo
-    - script:  sudo .travis/do.sh
+    - script: sudo .travis/do.sh
     - script: cat /etc/*release*
