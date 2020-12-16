@@ -3,13 +3,32 @@
 # Add steps that publish test results, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/c-cpp/gcc
 
-trigger:
-- main
+#trigger:
+#- main
+
+#jobs:
+#- job: c7-build
+#  container: centos:7 # Docker Hub image reference
+#
+#steps:
+#- script: |
+#    .travis/do.sh
+#  displayName: 'make'
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-18.04'
+
+strategy:
+  matrix:
+    c7:
+      containerImage: centos:7
+    c8:
+      containerImage: centos:8
+    u18:
+      containerImage: ubuntu:18.04
+
+container: $[ variables['containerImage'] ]
 
 steps:
-- script: |
-    make
-  displayName: 'make'
+- script: printenv
+- script: cat /etc/*release*
