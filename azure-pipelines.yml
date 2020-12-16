@@ -30,5 +30,5 @@ strategy:
 container: $[ variables['containerImage'] ]
 
 steps:
-- script: printenv
+- script: .travis/do.sh
 - script: cat /etc/*release*
