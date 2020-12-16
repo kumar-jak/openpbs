@@ -16,6 +16,8 @@
 #  displayName: 'make'
 
 
+
+
 jobs:
   - job: ce7
     pool:
@@ -25,3 +27,23 @@ jobs:
     - bash: docker run -it -e LC_ALL=en_US.utf-8 -e LANG=en_US.utf-8 -d -h pbs.dev.local --name pbsdev -v $(pwd):$(pwd) --privileged -w $(pwd) centos:7 /bin/bash
     - bash: docker exec  -e LC_ALL=en_US.utf-8 -e LANG=en_US.utf-8 --privileged pbsdev .travis/do.sh
 
+  - job: ce8
+    pool:
+      vmImage: 'ubuntu-18.04'
+    steps:
+    - bash: docker pull centos:8
+    - bash: docker run -it -e LC_ALL=en_US.utf-8 -e LANG=en_US.utf-8 -d -h pbs.dev.local --name pbsdev -v $(pwd):$(pwd) --privileged -w $(pwd) centos:8 /bin/bash
+    - bash: docker exec  -e LC_ALL=en_US.utf-8 -e LANG=en_US.utf-8 --privileged pbsdev .travis/do.sh
+  - job: s15
+    pool:
+      vmImage: 'ubuntu-18.04'
+    steps:
+    - bash: docker pull opensuse/leap:15
+    - bash: docker run -it -e LC_ALL=en_US.utf-8 -e LANG=en_US.utf-8 -d -h pbs.dev.local --name pbsdev -v $(pwd):$(pwd) --privileged -w $(pwd) opensuse/leap:15 /bin/bash
+    - bash: docker exec  -e LC_ALL=en_US.utf-8 -e LANG=en_US.utf-8 --privileged pbsdev .travis/do.sh
+
+  - job: u1804
+    pool:
+      vmImage: 'ubuntu-18.04'
+    steps:
+    - bash: .travis/do.sh
