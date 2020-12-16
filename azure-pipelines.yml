@@ -31,25 +31,25 @@ jobs:
   pool:
     vmImage: 'ubuntu-18.04'
   containerResource: c7  
-steps:
-- script: yum install -y sudo
-- script:  sudo .travis/do.sh
-- script: cat /etc/*release*
+  steps:
+  - script: yum install -y sudo
+  - script:  sudo .travis/do.sh
+  - script: cat /etc/*release*
 
 - job: ce8
   pool:
     vmImage: 'ubuntu-18.04'
   containerResource: c8  
-steps:
-- script: dnf install -y sudo
-- script:  sudo .travis/do.sh
-- script: cat /etc/*release*
+  steps:
+  - script: dnf install -y sudo
+  - script:  sudo .travis/do.sh
+  - script: cat /etc/*release*
 
 - job: ub18
   pool:
     vmImage: 'ubuntu-18.04'
   containerResource: u18  
-steps:
-- script: apt install -y sudo
-- script:  sudo .travis/do.sh
-- script: cat /etc/*release*
+  steps:
+  - script: apt install -y sudo
+  - script:  sudo .travis/do.sh
+  - script: cat /etc/*release*
