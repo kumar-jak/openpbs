@@ -20,9 +20,8 @@ jobs:
   - job: ce7
     pool:
       vmImage: 'ubuntu-18.04'
-    container: 
-      image: centos:7
-      options: --user vsts_azpcontainer --privileged
     steps:
-    - script: sudo .travis/do.sh
-    - script: cat /etc/*release*
+    - script: docker pull centos:7
+    - script: docker run -it -e LC_ALL=en_US.utf-8 -e LANG=en_US.utf-8 -d -h pbs.dev.local --name pbsdev -v $(pwd):$(pwd) --privileged -w $(pwd) centos:7 /bin/bash
+    - script: docker exec -it -e LC_ALL=en_US.utf-8 -e LANG=en_US.utf-8 --privileged pbsdev ./travis/do.sh
+
